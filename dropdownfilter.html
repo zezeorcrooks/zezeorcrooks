@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<div class="multi-select-container">
+    <label for="color-filter">Color:</label>
+    <div class="multi-select">
+        <button class="multi-select-button">5 selected ▼</button>
+        <div class="multi-select-dropdown">
+            <label><input type="checkbox" value="Red" checked> White (7)</label>
+            <label><input type="checkbox" value="Blue" checked> Black (7)</label>
+            <label><input type="checkbox" value="Green" checked> Grey (7)</label>
+            <label><input type="checkbox" value="Yellow" checked> Yellow (7)</label>
+            <label><input type="checkbox" value="Black" checked> Black (7)</label>
+            <button class="reset-button">Reset</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .multi-select-container {
+        position: relative;
+        display: inline-block;
+        margin: 20px 0;
+    }
+
+    .multi-select-button {
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    .multi-select-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .multi-select-dropdown label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .multi-select-dropdown input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+    .reset-button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+    }
+
+    .multi-select:hover .multi-select-dropdown {
+        display: block;
+    }
+</style>
+
+<script>
+    document.querySelector('.reset-button').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('.multi-select-dropdown input[type="checkbox"]');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+    });
+</script>
+
+
+
+
+
+
+<div class="multi-select-container">
+    <label for="size-filter">Size:</label>
+    <div class="multi-select">
+        <button class="multi-select-button">5 selected ▼</button>
+        <div class="multi-select-dropdown">
+            <label><input type="checkbox" value="XS" checked> XS (7)</label>
+            <label><input type="checkbox" value="S" checked> S (7)</label>
+            <label><input type="checkbox" value="M" checked> M (7)</label>
+            <label><input type="checkbox" value="L" checked> L (7)</label>
+            <label><input type="checkbox" value="XL" checked> XL (7)</label>
+            <button class="reset-button">Reset</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .multi-select-container {
+        position: relative;
+        display: inline-block;
+        margin: 20px 0;
+    }
+
+    .multi-select-button {
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    .multi-select-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .multi-select-dropdown label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .multi-select-dropdown input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+    .reset-button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+    }
+
+    .multi-select:hover .multi-select-dropdown {
+        display: block;
+    }
+</style>
+
+<script>
+    
+    document.querySelector('.reset-button').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('.multi-select-dropdown input[type="checkbox"]');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+    });
+</script>
+
+<div class="multi-select-container">
+    <label for="color-filter">Color:</label>
+    <div class="multi-select">
+        <button class="multi-select-button" id="color-select-button"> 0 selected ▼</button>
+        <div class="multi-select-dropdown">
+            <label><input type="checkbox" value="Black" data-count="4"> Black (4)</label>
+            <label><input type="checkbox" value="Gray" data-count="4"> Gray (4)</label>
+            <label><input type="checkbox" value="White" data-count="1"> White (1)</label>
+            <button class="reset-button" id="color-reset-button">Reset</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const colorSelectButton = document.getElementById('color-select-button');
+    const colorCheckboxes = document.querySelectorAll('.multi-select-dropdown input[type="checkbox"]');
+    const colorResetButton = document.getElementById('color-reset-button');
+
+    // Function to update the selected count
+    function updateSelectedCount() {
+        const selectedCount = Array.from(colorCheckboxes).filter(checkbox => checkbox.checked).length;
+        colorSelectButton.textContent = `${selectedCount} selected ▼`;
+    }
+
+    // Add event listeners to checkboxes
+    colorCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectedCount);
+    });
+
+    // Reset button functionality
+    colorResetButton.addEventListener('click', function () {
+        colorCheckboxes.forEach(checkbox => checkbox.checked = false);
+        updateSelectedCount();
+    });
+
+    // Initialize the count on page load
+    updateSelectedCount();
+    // Initialize the count on page load
+updateSelectedCount();
+</script>
